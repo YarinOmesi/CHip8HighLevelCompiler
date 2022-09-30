@@ -6,7 +6,14 @@ namespace Chip8Compiler.Assembly.Parsing.Base.AntlrParser;
 
 public class AssemblyAntlrParser : IAssemblyParser
 {
-    private readonly IProgramCreator _programCreator = new ProgramCreator();
+    private readonly IProgramCreator _programCreator;
+
+    public AssemblyAntlrParser()
+    {
+        var parameterCreator = new ParameterCreator();
+        var statementCreator = new StatementCreator(parameterCreator);
+        _programCreator = new ProgramCreator(statementCreator);
+    }
 
     public AssemblyProgram Parse(string code)
     {

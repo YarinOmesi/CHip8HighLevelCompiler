@@ -6,9 +6,8 @@ internal class StatementCreator : IStatementCreator
 {
     private readonly Visitor _visitor;
 
-    public StatementCreator()
+    public StatementCreator(ICommandParametersCreator parametersCreator)
     {
-        ICommandParametersCreator parametersCreator = new ParameterCreator();
         _visitor = new Visitor(parametersCreator);
     }
 
