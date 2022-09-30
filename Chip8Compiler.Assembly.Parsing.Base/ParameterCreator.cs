@@ -2,7 +2,7 @@
 
 namespace Chip8Compiler.Assembly.Parsing.Base.AntlrParser;
 
-public class ParameterCreator : ICommandParametersCreator
+internal class ParameterCreator : ICommandParametersCreator
 {
     private readonly Visitor _visitor = new Visitor();
 

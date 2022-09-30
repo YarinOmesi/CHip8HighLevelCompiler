@@ -2,7 +2,7 @@
 
 namespace Chip8Compiler.Assembly.Parsing.Base.AntlrParser;
 
-public interface IStatementCreator
+internal interface IStatementCreator
 {
     public AssemblyStatement Create(Chip8AssemblyParser.StatementContext context);
 }

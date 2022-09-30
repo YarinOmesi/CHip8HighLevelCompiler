@@ -1,9 +1,8 @@
-﻿using Chip8Compiler.Assembly.Parsing.Core;
-using Chip8Compiler.Assembly.Parsing.Models;
+﻿using Chip8Compiler.Assembly.Parsing.Models;
 
 namespace Chip8Compiler.Assembly.Parsing.Base.AntlrParser;
 
-public class ProgramCreator : IProgramCreator
+internal class ProgramCreator : IProgramCreator
 {
     private readonly IStatementCreator _statementCreator = new StatementCreator();
 

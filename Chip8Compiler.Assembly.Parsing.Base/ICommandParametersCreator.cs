@@ -2,7 +2,7 @@
 
 namespace Chip8Compiler.Assembly.Parsing.Base.AntlrParser;
 
-public interface ICommandParametersCreator
+internal interface ICommandParametersCreator
 {
     public CommandParameter[] Create(Chip8AssemblyParser.CommandParamsContext context);
 }
