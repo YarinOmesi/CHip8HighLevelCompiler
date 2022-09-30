@@ -1,5 +1,4 @@
-﻿using Chip8Compiler.Assembly.Antlr;
-using Chip8Compiler.Assembly.Parsing.Models;
+﻿using Chip8Compiler.Assembly.Parsing.Models;
 
 namespace Chip8Compiler.Assembly.Parsing.Core;
 

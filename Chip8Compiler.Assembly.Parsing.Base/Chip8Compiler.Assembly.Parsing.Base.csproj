@@ -9,7 +9,6 @@
 
 
     <ItemGroup>
-      <ProjectReference Include="..\Chip8Compiler.Assembly.Antlr\Chip8Compiler.Assembly.Antlr.csproj" />
       <ProjectReference Include="..\Chip8Compiler.Assembly.Parsing.Core\Chip8Compiler.Assembly.Parsing.Core.csproj" />
       <ProjectReference Include="..\Chip8Compiler.Assembly.Parsing.Models\Chip8Compiler.Assembly.Parsing.Models.csproj" />
     </ItemGroup>
