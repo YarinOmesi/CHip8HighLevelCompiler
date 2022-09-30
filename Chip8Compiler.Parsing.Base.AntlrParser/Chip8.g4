@@ -22,9 +22,7 @@ parameters:
 typeAndName: type name=IDENTIFIER;
 
 // ==== primitive types ====
-type : 
-    token='byte[]' # arrayType
-    | token='byte' # byteType
+type : token='byte' # byteType
 ;
     
 // ==== statements ====
@@ -36,12 +34,6 @@ statement:
     | assignmentStatement
     ; 
 
-arraySyntaxItems:
-    term
-    | term ',' arraySyntaxItems
-    |
-    ;
-arraySyntax: '[' arraySyntaxItems ']';
 variableDeclarationStatement: typeAndName '=' value=term;  
 
 assignmentStatement: reference '=' value=term; 
@@ -68,17 +60,14 @@ factor: left=primary (FACTOR_OPS right=primary)*;
 primary: number 
     | reference
     | grouping
-    | arraySyntax;
+    ;
 
 
-reference: referenceIdentifier
-    | arrayIndexer
-    ;    
+reference: referenceIdentifier;    
     
 referenceIdentifier: IDENTIFIER;
-arrayIndexer: IDENTIFIER '[' expression ']';
 
-grouping: '(' expression ')';
+grouping: '(' term ')';
 number: NUMBER;
 
 

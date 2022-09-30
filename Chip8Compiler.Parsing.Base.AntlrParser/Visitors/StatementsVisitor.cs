@@ -7,7 +7,6 @@ namespace Chip8Compiler.Parsing.Base.AntlrParser.Visitors;
 internal class StatementsVisitor : Chip8BaseVisitor<Statement>
 {
     private readonly ExpressionVisitor _expressionVisitor = new();
-    private readonly TypeVisitor _typeVisitor = new();
 
     public override Statement VisitExpression(Chip8Parser.ExpressionContext context)
     {
@@ -20,14 +19,14 @@ internal class StatementsVisitor : Chip8BaseVisitor<Statement>
         return new MethodDeclarationStatement(context.name.ToToken(), Parameters(context.parameters()), body);
     }
 
-    private TypedName[] Parameters(Chip8Parser.ParametersContext context)
+    private Token[] Parameters(Chip8Parser.ParametersContext context)
     {
-        var typedNames = new List<TypedName>();
+        var typedNames = new List<Token>();
         while (context != null)
         {
             if (context.typeAndName() != null)
             {
-                typedNames.Add(TypedName(context.typeAndName()));
+                typedNames.Add(context.typeAndName().name.ToToken());
             }
 
             context = context.parameters();
@@ -35,12 +34,7 @@ internal class StatementsVisitor : Chip8BaseVisitor<Statement>
 
         return typedNames.ToArray();
     }
-
-    private TypedName TypedName(Chip8Parser.TypeAndNameContext context)
-    {
-        return new TypedName(_typeVisitor.Visit(context.type()), context.name.ToToken());
-    }
-
+    
     private Block Block(Chip8Parser.BlockContext blockContext)
     {
         return new Block(blockContext.statementsInMethod().Select(VisitStatementsInMethod).ToArray());
@@ -79,13 +73,13 @@ internal class StatementsVisitor : Chip8BaseVisitor<Statement>
     public override Statement VisitVariableDeclarationStatement(Chip8Parser.VariableDeclarationStatementContext context)
     {
         return new VariableDeclarationStatement(
-            TypedName(context.typeAndName()), _expressionVisitor.Visit(context.value) 
+            context.typeAndName().name.ToToken(), _expressionVisitor.Visit(context.value) 
         );
     }
 
     public override Statement VisitAssignmentStatement(Chip8Parser.AssignmentStatementContext context)
     {
-        return new AssignmentStatement((BaseExpressionReference) _expressionVisitor.VisitReference(context.reference()),
+        return new AssignmentStatement((VariableReferenceExpression) _expressionVisitor.VisitReference(context.reference()),
             _expressionVisitor.Visit(context.value));
     }
 

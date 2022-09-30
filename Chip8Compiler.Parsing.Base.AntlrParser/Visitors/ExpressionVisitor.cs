@@ -54,16 +54,10 @@ internal class ExpressionVisitor : Chip8BaseVisitor<Expression>
     {
         return new VariableReferenceExpression(context.IDENTIFIER().Symbol.ToToken());
     }
-
-    public override Expression VisitArrayIndexer(Chip8Parser.ArrayIndexerContext context)
-    {
-        return new ArrayIndexerReferenceExpression(context.IDENTIFIER().Symbol.ToToken(),
-            Visit(context.expression()));
-    }
     
     public override Expression VisitGrouping(Chip8Parser.GroupingContext context)
     {
-        return new GroupingExpression(Visit(context.expression()));
+        return new GroupingExpression(Visit(context.term()));
     }
 
     public override Expression VisitNumber(Chip8Parser.NumberContext context)
@@ -71,24 +65,5 @@ internal class ExpressionVisitor : Chip8BaseVisitor<Expression>
         var number = context.NUMBER().Symbol.ToToken();
         bool isHex = number.Text.StartsWith("0x");
         return isHex? new HexNumber(number): new NumberExpression(number);
-    }
-
-    public override Expression VisitArraySyntax(Chip8Parser.ArraySyntaxContext context)
-    {
-        return new ArraySyntaxExpression(ArrayItems(context.arraySyntaxItems()));
-    }
-
-    private Expression[] ArrayItems(Chip8Parser.ArraySyntaxItemsContext context)
-    {
-        var values = new List<Expression>();
-        while (context!= null)
-        {
-            if (context.term()!=null)
-            {
-                values.Add(Visit(context.term()));
-            }
-            context = context.arraySyntaxItems();
-        }
-        return values.ToArray();
     }
 }
