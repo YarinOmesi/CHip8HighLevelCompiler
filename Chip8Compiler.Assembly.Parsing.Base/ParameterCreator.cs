@@ -4,7 +4,7 @@ namespace Chip8Compiler.Assembly.Parsing.Base.AntlrParser;
 
 internal class ParameterCreator : ICommandParametersCreator
 {
-    private readonly Visitor _visitor = new Visitor();
+    private readonly Visitor _visitor = new();
 
     public CommandParameter[] Create(Chip8AssemblyParser.CommandParamsContext context)
     {

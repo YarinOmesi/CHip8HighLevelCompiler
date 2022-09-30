@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Chip8Compiler.Assembly.Parsing.Models\Chip8Compiler.Assembly.Parsing.Models.csproj" />
+        <ProjectReference Include="..\Chip8Compiler.Assembly.Parsing.Models\Chip8Compiler.Assembly.Parsing.Models.csproj"/>
     </ItemGroup>
 
 </Project>

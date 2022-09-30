@@ -9,8 +9,8 @@
 
 
     <ItemGroup>
-      <ProjectReference Include="..\Chip8Compiler.Assembly.Parsing.Core\Chip8Compiler.Assembly.Parsing.Core.csproj" />
-      <ProjectReference Include="..\Chip8Compiler.Assembly.Parsing.Models\Chip8Compiler.Assembly.Parsing.Models.csproj" />
+        <ProjectReference Include="..\Chip8Compiler.Assembly.Parsing.Core\Chip8Compiler.Assembly.Parsing.Core.csproj"/>
+        <ProjectReference Include="..\Chip8Compiler.Assembly.Parsing.Models\Chip8Compiler.Assembly.Parsing.Models.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -31,7 +31,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Antlr4.Runtime" Version="4.6.6" />
+        <PackageReference Include="Antlr4.Runtime" Version="4.6.6"/>
     </ItemGroup>
 
 </Project>
