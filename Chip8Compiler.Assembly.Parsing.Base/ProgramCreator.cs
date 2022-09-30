@@ -5,7 +5,7 @@ namespace Chip8Compiler.Assembly.Parsing.Base.AntlrParser;
 
 public class ProgramCreator : IProgramCreator
 {
-    private readonly IStatementCreator _statementCreator = new StatementVisitor();
+    private readonly IStatementCreator _statementCreator = new StatementCreator();
 
     public AssemblyProgram Create(Chip8AssemblyParser.ProgramContext context)
     {
