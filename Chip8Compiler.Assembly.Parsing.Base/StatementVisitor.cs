@@ -7,7 +7,7 @@ public class StatementVisitor : Chip8AssemblyBaseVisitor<AssemblyStatement>,ISta
 {
     public List<AssemblyStatement> Statements { get; } = new();
     
-    private readonly ICommandParametersCreator _parametersCreator = new ParameterVisitor();
+    private readonly ICommandParametersCreator _parametersCreator = new ParameterCreator();
 
     public AssemblyStatement Create(Chip8AssemblyParser.StatementContext context)
     {
